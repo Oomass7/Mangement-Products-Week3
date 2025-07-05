@@ -1,0 +1,17 @@
+body {
+    background-color: white;
+}
+
+.navbar,
+.has-background-danger {
+    background-color: #d32f2f !important;
+    color: white;
+}
+
+.has-text-danger-dark {
+    color: #b71c1c !important;
+}
+
+.box {
+    border: 2px solid #d32f2f;
+}
