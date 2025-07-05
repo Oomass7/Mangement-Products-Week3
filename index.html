@@ -5,11 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Management</title>
+
+    <!-- Bulma CSS for styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <!-- My custom styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- This is the top navigation bar -->
     <nav class="navbar has-background-danger">
         <div class="navbar-brand">
             <a class="navbar-item has-text-white has-text-weight-bold">
@@ -17,43 +21,57 @@
             </a>
         </div>
     </nav>
+
+    <!-- Main section where all content goes -->
     <section class="section">
         <div class="container">
+
+            <!-- Box that shows product list -->
             <div class="box">
                 <h2 class="title is-4 has-text-danger-dark">Available Products</h2>
                 <div id="product-list" class="content">
+                    <!-- The products will appear here -->
                 </div>
             </div>
+
+            <!-- Box to add new products -->
             <div class="box">
                 <h2 class="title is-4 has-text-danger-dark">Add New Product</h2>
+
+                <!-- Input for product ID -->
                 <div class="field">
                     <label class="label">ID</label>
                     <div class="control">
                         <input class="input" type="number" id="add-id" placeholder="Product ID">
                     </div>
                 </div>
+
+                <!-- Input for product name -->
                 <div class="field">
                     <label class="label">Name</label>
                     <div class="control">
                         <input class="input" type="text" id="add-name" placeholder="Product name">
                     </div>
                 </div>
+
+                <!-- Input for product price -->
                 <div class="field">
                     <label class="label">Price</label>
                     <div class="control">
                         <input class="input" type="number" id="add-price" placeholder="Product price">
                     </div>
                 </div>
+
+                <!-- Button to add the product -->
                 <div class="control">
                     <button class="button is-danger" id="add-product-btn" type="button">Add</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- JavaScript file for the logic -->
     <script src="gestion_api.js"></script>
-</body>
-</html>
-<script src="gestion_api.js"></script>
 </body>
 
 </html>

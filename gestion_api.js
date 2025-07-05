@@ -1,11 +1,15 @@
+
+// Get elements from the HTML page
 const productList = document.getElementById("product-list");
 const addId = document.getElementById("add-id");
 const addName = document.getElementById("add-name");
 const addPrice = document.getElementById("add-price");
 const addButton = document.getElementById("add-product-btn");
 
+// This is the link where the data is stored (our fake API)
 const apiUrl = "http://localhost:3000/products";
 
+// This function gets the product list from the server and shows them on the screen
 async function loadProducts() {
     try {
         const res = await fetch(apiUrl);
@@ -14,6 +18,7 @@ async function loadProducts() {
 
         productList.innerHTML = "";
         data.forEach(product => {
+            // We create each product card with Edit and Delete buttons
             const item = document.createElement("div");
             item.classList.add("box", "has-background-white");
             item.innerHTML = `
@@ -46,14 +51,15 @@ async function loadProducts() {
         });
 
     } catch (error) {
+        // If there is a problem getting the data, we show an alert
         productList.innerHTML = `<p class="has-text-danger">⚠ Failed to load products.</p>`;
         alert("Error loading products: " + error.message + "\nIs json-server running?");
     }
 }
 
-// Add product
+// When the user clicks "Add", we send the new product to the server
 addButton.addEventListener("click", async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // stop the page from refreshing
     const newProduct = {
         id: parseInt(addId.value),
         name: addName.value,
@@ -68,12 +74,13 @@ addButton.addEventListener("click", async (e) => {
         });
         await res.json();
         alert("Product added successfully");
-        loadProducts();
+        loadProducts(); // reload the list
     } catch (error) {
         alert("Error adding product: " + error.message);
     }
 });
 
+// Show edit inputs and hide normal view
 function enableEdit(btn, id, name, price) {
     const card = btn.closest(".box");
     const view = card.querySelector("[data-view]");
@@ -82,6 +89,7 @@ function enableEdit(btn, id, name, price) {
     edit.style.display = "block";
 }
 
+// Cancel edit and go back to view
 function cancelEdit(btn) {
     const card = btn.closest(".box");
     const view = card.querySelector("[data-view]");
@@ -90,6 +98,7 @@ function cancelEdit(btn) {
     view.style.display = "block";
 }
 
+// Save new values after editing
 async function saveEdit(btn, id) {
     const card = btn.closest(".box");
     const inputs = card.querySelectorAll("[data-edit] input");
@@ -111,6 +120,7 @@ async function saveEdit(btn, id) {
     }
 }
 
+// Ask user to confirm and delete product
 async function deleteProduct(id) {
     const confirmDelete = confirm("Are you sure you want to delete this product?");
     if (!confirmDelete) return;
@@ -124,4 +134,5 @@ async function deleteProduct(id) {
     }
 }
 
+// Load products when page starts
 loadProducts();
